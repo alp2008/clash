@@ -11,10 +11,21 @@ void Button(int x, const char* name)
     txSelectFont("Arial", 24);
     txDrawText(x, 30, x+150, 70, name);
 }
+bool Buttonclick(int x)
+{
+    return(txMouseButtons() == 1 &&
+            txMouseX()>= x && txMouseX()<=x+150 &&
+            txMouseY()>= 35 && txMouseY()<=75);
+}
+
 int main()
 {
     txCreateWindow (1200, 700);
 
+    HDC pic1 = txLoadImage ("pictures/ratusha.bmp");
+    HDC pic2 = txLoadImage ("pictures/gun.bmp");
+    bool pic1_visible = false;
+    bool pic2_visible = false;
 
     while(!GetAsyncKeyState (VK_ESCAPE))
     {
@@ -23,21 +34,52 @@ int main()
         txSetFillColor(TX_GREEN);
         txClear();
         //кнопкa
-        Button(50, "кнопка, да?");
-        Button(250, "понял, да?");
-
-        if(txMouseButtons() == 1 &&
-           txMouseX()>= 50 && txMouseX()<=200 &&
-           txMouseY()>= 35 && txMouseY()<=75)
+        Button(50, "здания");
+        Button(250, "защитные здания");
+        
+         if(clickButton(50))
         {
-            txSetColor(TX_BLACK);
-            txSelectFont("Arial", 24);
-            txDrawText(0, 50, 1200, 200, "нажал, да?");
+            pic1_menu_visible = true;
+            pic2_menu_visible = true;
+        }
+
+        if(pic1_menu_visible)
+        {
+            Win32::TransparentBlt (txDC(), 20, 100, 80, 200, pic1, 0, 0, 240, 600, TX_WHITE);
+        }
+
+        if(pic2_menu_visible)
+        {
+            Win32::TransparentBlt (txDC(), 20, 300, 80, 200, pic2, 0, 0, 240, 600, TX_WHITE);
+        }
+
+        if(clickPictures(100))
+        {
+            pic1_central_visible = true;
+        }
+
+        if(pic1_central_visible)
+        {
+            Win32::TransparentBlt (txDC(), 20, 250, 150, 150, pic1, 0, 0, 225, 225, TX_WHITE);
+        }
+
+        if(clickPictures(250))
+        {
+            pic2_central_visible = true;
+        }
+
+        if(pic2_central_visible)
+        {
+            Win32::TransparentBlt(txDC(), 20, 100, 150, 150, pic2, 0, 0, 200, 200, TX_WHITE);
         }
 
         txSleep(50);
         txEnd();
     }
+
+txDeleteDC(pic1);
+txDeleteDC(pic2);
+
 txDisableAutoPause();
 txTextCursor (false);
 return 0;
