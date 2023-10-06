@@ -4,26 +4,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>25-09-2023 at 19:53.38</u><br />
-Build ended on: <u>25-09-2023 at 19:53.51</u><p />
+Build started on: <u>06-10-2023 at 19:51.51</u><br />
+Build ended on: <u>06-10-2023 at 19:51.56</u><p />
 <b>-------------- Build: Debug in clash (compiler: NOT FOR PROJECTS! = MinGW GCC + Strict + Fast + Save (Requires Git))---------------</b><br />
-g++git-auto.bat "D:\пономарёв александр\clash-main\main.cpp" -o bin\Debug\clash.exe -mwindows  -Wall -fexceptions  -g  -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wmissing-field-initializers -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -D_DEBUG -D_EJUDGE_CLIENT_SIDE -D_EJC<br />
+g++git-auto.bat "D:\пономарёв александр\clash-main\clash-main\main.cpp" -o bin\Debug\clash.exe -mwindows  -Wall -fexceptions  -g  -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wmissing-field-initializers -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -D_DEBUG -D_EJUDGE_CLIENT_SIDE -D_EJC<br />
 ------------------------------------------------------------------------------------------------------<br />
 Compilation ERRORS:<br />
 <br />
-D:\пономарёв александр\clash-main\main.cpp: In function 'bool clickPictures(int)':<br />
-<font color="#0000ff">D:\пономарёв александр\clash-main\main.cpp:40:6: warning: no previous declaration for 'bool clickPictures(int)' [-Wmissing-declarations]</font><br />
- bool clickPictures(int y)<br />
-      ^<br />
-D:\пономарёв александр\clash-main\main.cpp: In function 'void DrawPicture(int, int, int, int, HDC)':<br />
-<font color="#0000ff">D:\пономарёв александр\clash-main\main.cpp:46:6: warning: no previous declaration for 'void DrawPicture(int, int, int, int, HDC)' [-Wmissing-declarations]</font><br />
- void DrawPicture(int x, int y, int width_scr, int height_scr, HDC pictures)<br />
-      ^<br />
+D:\пономарёв александр\clash-main\clash-main\main.cpp: In constructor 'Button::Button()':<br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:2:8: warning: 'Button::x' should be initialized in the member initialization list [-Weffc++]</font><br />
+ struct Button<br />
+        ^<br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:2:8: warning: 'Button::name' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:2:8: warning: 'Button::category' should be initialized in the member initialization list [-Weffc++]</font><br />
+D:\пономарёв александр\clash-main\clash-main\main.cpp: In function 'int main()':<br />
+D:\пономарёв александр\clash-main\clash-main\main.cpp:65:25: note: synthesized method 'Button::Button()' first required here <br />
+     Button btn[count_btn];<br />
+                         ^<br />
+D:\пономарёв александр\clash-main\clash-main\main.cpp: In constructor 'Picture::Picture()':<br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::x' should be initialized in the member initialization list [-Weffc++]</font><br />
+ struct Picture<br />
+        ^<br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::y' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::pic' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::w_scr' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::h_scr' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::w' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::h' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::visible' should be initialized in the member initialization list [-Weffc++]</font><br />
+<font color="#0000ff">D:\пономарёв александр\clash-main\clash-main\main.cpp:30:8: warning: 'Picture::category' should be initialized in the member initialization list [-Weffc++]</font><br />
+D:\пономарёв александр\clash-main\clash-main\main.cpp: In function 'int main()':<br />
+D:\пономарёв александр\clash-main\clash-main\main.cpp:69:30: note: synthesized method 'Picture::Picture()' first required here <br />
+     Picture menuPic[count_pic];<br />
+                              ^<br />
+<font color="#ff0000">D:\пономарёв александр\clash-main\clash-main\main.cpp:197:1: error: expected '}' at end of input</font><br />
+ }<br />
+ ^<br />
+<font color="#ff0000">D:\пономарёв александр\clash-main\clash-main\main.cpp:197:1: error: expected '}' at end of input</font><br />
 ------------------------------------------------------------------------------------------------------<br />
-Autosaving to the Git repository in D:/ /clash-main/.git-auto/... <br />
-Output size is 2,25 MB<br />
-<font color="#0000ff">Process terminated with status 0 (0 minutes, 12 seconds)</font><br />
-<font color="#0000ff">0 errors, 2 warnings (0 minutes, 12 seconds)</font><br />
+Autosaving to the Git repository in D:/ /clash-main/clash-main/.git-auto/... <br />
+<font color="#a00000">Process terminated with status 1 (0 minutes, 5 seconds)</font><br />
+<font color="#a00000">2 errors, 12 warnings (0 minutes, 5 seconds)</font><br />
 </tt>
 </body>
 </html>

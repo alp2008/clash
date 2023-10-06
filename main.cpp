@@ -4,7 +4,9 @@ struct Button
     int x;
     const char* name;
 
-    void DrawButton()
+    string category;
+
+    void Draw()
     {
         txSetColor(TX_TRANSPARENT);
         txSetFillColor(TX_GREY);
@@ -17,7 +19,7 @@ struct Button
         txDrawText(x, 30, x+150, 70, name);
     }
 
-    bool Buttonclick()
+    bool Click()
     {
         return(txMouseButtons() == 1 &&
         txMouseX()>= x && txMouseX()<=x+150 &&
@@ -30,36 +32,50 @@ struct Picture
     int x;
     int y;
     HDC pic;
-    int scr_w;
-    int scr_h;
+    int w_scr;
+    int h_scr;
     int w;
     int h;
     bool visible;
-};
+    string category;
 
-bool clickPictures(int y)
+    void draw()
+{
+    if(visible)
+    {
+        Win32::TransparentBlt (txDC(),x ,y ,w_scr,h_scr,pic,0,0,w,h,TX_white);
+    }
+}
+
+    bool Click()
 {
     return( txMouseButtons() == 1 &&
             txMouseX() >= 20 && txMouseX() <= 100 &&
             txMouseY() >= y && txMouseY() <= y+200);
 }
-void DrawPicture(int x, int y, int width_scr, int height_scr, HDC pictures)
-{
-    Win32::TransparentBlt (txDC(), x, y, width_scr, height_scr, pictures, 0, 0, 225, 225, TX_WHITE);
-}
 
+};
 
 int main()
 {
     txCreateWindow (1200, 700);
     //инициализация кнопок
-    Button btn[2];
-    btn[0] = {50, "обычные здания"};
-    btn[1] = {250, "защитные здания"};
+    int count_btn=2;
+    int count_pic=2;
+    Button btn[count_btn];
+    btn[0] = {50, "обычные здания", "обычные здания"};
+    btn[1] = {250, "защитные здания", "защитные здания"};
 
-    HDC pic1 = txLoadImage ("pictures/build/ratusha.bmp");
-    HDC pic2 = txLoadImage ("pictures/defense/gun.bmp");
-    int pic1_menu_x=20;
+    Picture menuPic[count_pic];
+    menuPic[0] = {20, 100, txLoadImage ("pictures/build/ratusha.bmp"), 120, 120, 300, 300, false, "обычные здания"};
+    menuPic[1] = {20, 300, txLoadImage ("pictures/defense/gun.bmp"), 120, 120, 300, 300, false, "обычные здания"};
+
+    Picture centrPic[count_pic];
+    centrPic[0] = {300, 300, menuPic[0].pic, 150, 150, 300, 300, false, "обычные здания"};
+    centrPic[1] = {300, 500, menuPic[1].pic, 150, 150, 300, 300, false, "обычные здания"};
+
+
+    /*int pic1_menu_x=20;
     int pic1_menu_y=100;
     int pic1_menu_w=120;
     int pic1_menu_h=120;
@@ -68,8 +84,9 @@ int main()
     int pic1_central_w=150;
     int pic1_central_h=150;
     bool pic1_menu_visible = false;
-    bool pic2_menu_visible = false;
     bool pic1_central_visible = false;
+
+    bool pic2_menu_visible = false;
     bool pic2_central_visible = false;
     int pic2_menu_x=20;
     int pic2_menu_y=300;
@@ -78,7 +95,7 @@ int main()
     int pic2_central_x=300;
     int pic2_central_y=500;
     int pic2_central_w=150;
-    int pic2_central_h=150;
+    int pic2_central_h=150;*/
 
     while(!GetAsyncKeyState (VK_ESCAPE))
     {
@@ -87,20 +104,53 @@ int main()
         txSetFillColor(TX_GREEN);
         txClear();
 
-        for (int i=0; i<2; i++)
+        for (int i=0; i<count_btn; i++)
         {
-            btn[i].DrawButton();
+            btn[i].Draw();
         }
 
-        if(btn[0].Buttonclick())
+        for (int i=0;i<count_pic; i++)
         {
-            pic1_menu_visible = true;
-            pic2_menu_visible = true;
+            menuPic[i].draw();
         }
 
-        if(pic1_menu_visible)
+        for (int i=0;i<count_pic; i++)
         {
-            DrawPicture(pic1_menu_x, pic1_menu_y, pic1_menu_w, pic1_menu_h, pic1);
+            centrPic[i].draw();
+        }
+
+        for (int ib=0;ib<count_btn; ib++)
+        {
+            if(btn[ib].Click())
+            {
+                menuPic[ib].visible= true;
+            {
+        }
+
+    if(menuPic[0].Click()&& menuPic[0].visible)
+    {
+        centrPic[0].visible =true;
+    }
+
+    if(menuPic[1].Click()&& menuPic[1].visible)
+    {
+        centrPic[1].visible =true;
+    }
+
+    if(menuPic[2].Click()&& menuPic[2].visible)
+    {
+        centrPic[2].visible =true;
+    }
+
+        /*if(btn[0].Click())
+        {
+            menuPic[0].visible = true;
+            menuPic[1].visible = true;
+        }
+
+        if(menuPic[0].visible)
+        {
+            Draw(menuPic[0].x, menuPic[0].y, menuPic[0].w, menuPic[0].h, menuPic[0]);
         }
 
         if(pic2_menu_visible)
@@ -126,14 +176,20 @@ int main()
         if(pic2_central_visible)
         {
             DrawPicture(pic2_central_x, pic2_central_y, pic2_central_w, pic2_central_h, pic2);
-        }
+        }*/
 
         txSleep(50);
         txEnd();
     }
 
-txDeleteDC(pic1);
-txDeleteDC(pic2);
+    for (int i=0; i<count_pic; i++)
+    {
+        txDeleteDC(menuPic[i].pic);
+    }
+    for (int i=0; i<count_pic; i++)
+    {
+        txDeleteDC(centrPic[i].pic);
+    }
 
 txDisableAutoPause();
 txTextCursor (false);
